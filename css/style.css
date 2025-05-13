@@ -417,6 +417,93 @@
         margin-top: auto;
     }
 
+/* Style pour la carte */
+.services-item {
+    pointer-events: auto;
+    transition: all 0.4s ease;
+}
+
+/* Carte agrandie */
+.services-item.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    width: 500px;
+    min-height: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    filter: none;
+    pointer-events: auto;
+    z-index: 1000;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+/* Contenu initial (caché quand agrandi) */
+.services-item.active .services-content-icon {
+    display: none;
+}
+
+/* Contenu agrandi (visible quand agrandi) */
+.expanded-inner {
+    display: none;
+    padding: 20px;
+}
+
+/* Contenu agrandi visible */
+.services-item.active .expanded-inner {
+    display: block;
+}
+
+/* Bouton de fermeture */
+.close-btn {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+}
+
+/* Bouton de fermeture visible */
+.services-item.active .close-btn {
+    display: block;
+}
+
+/* Effet de flou sur l'arrière-plan */
+body.blurred .services-item:not(.active) {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* Assure que le bouton Lire Plus est cliquable */
+.lire-plus {
+    pointer-events: auto !important;
+    z-index: 10;
+    position: relative;
+}
+
+/* Debug : Bordure rouge sur clic */
+.lire-plus:active {
+    border: 2px solid red !important;
+}
+
+/* Assure que le conteneur parent ne bloque pas les clics */
+.services-content-icon {
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+}
 
 
 /*** Services End ***/
