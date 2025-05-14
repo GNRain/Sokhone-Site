@@ -320,193 +320,197 @@
 /*** Carousel End ***/
 
 
-/*** Services Start ***/
+        /*** Services Start ***/
 
-.services .services-item {
-    border: 1px solid #B5B5C3; /* Border similar to .blog__post-item */
-    border-radius: 10px; /* Rounded corners */
-    background: var(--tg-common-color-white); /* White background */
-    padding: 20px 25px 35px; /* Padding inside the card */
-    box-shadow: 0 0 60px rgba(0, 0, 0, .2); /* Initial shadow */
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth shadow transition */
-    margin-bottom: 30px; /* Space between cards */
-    overflow: hidden; /* Make sure the shine doesn't spill out */
-}
+        .services .services-item {
+            border: 1px solid #B5B5C3;
+            border-radius: 10px;
+            background: var(--tg-common-color-white, #ffffff);
+            padding: 20px 25px 35px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, .2);
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
 
-/* Shine effect */
-.services-item::before {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
-    transform: rotate(45deg);
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0s, top 0s, left 0s; /* No transition until hover */
-}
+        .services-item::before {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+            transform: rotate(45deg);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0s, top 0s, left 0s;
+        }
 
-/* Trigger the shine effect on hover */
-.services-item:hover::before {
-    animation: shine 0.5s forwards;
-}
+        .services-item:hover::before {
+            animation: shine 0.5s forwards;
+        }
 
-/* Shine animation */
-@keyframes shine {
-    0% {
-        top: -100%;
-        left: -100%;
-        opacity: 1;
-    }
-    100% {
-        top: -50%;
-        left: -50%;
-        opacity: 0;
-    }
-}
+        @keyframes shine {
+            0% {
+                top: -100%;
+                left: -100%;
+                opacity: 1;
+            }
+            100% {
+                top: -50%;
+                left: -50%;
+                opacity: 0;
+            }
+        }
 
-/* Shadow on hover (Gray shadow under the card) */
-.services-item:hover {
-    box-shadow: 10px 10px 0px 0px #CAC9D6; /* Darker shadow when hovered */
-    transform: translateY(-5px); /* Slight lift on hover */
-}
+        .services-item:hover {
+            box-shadow: 10px 10px 0px 0px #CAC9D6;
+            transform: translateY(-5px);
+        }
 
-/* Icon and text styling */
-.services-item .services-content-icon i,
-.services-item .services-content-icon p {
-    transition: .5s;
-}
-.services-item .services-content-icon p {
-    color: inherit; /* Keeps the text color same */
-}
+        .services-item .services-content-icon i,
+        .services-item .services-content-icon p {
+            transition: .5s;
+        }
+        .services-item .services-content-icon p {
+            color: inherit;
+        }
 
-.services-item:hover .services-content-icon p {
-    color: inherit; /* No color change */
-}
+        .services-item:hover .services-content-icon p {
+            color: inherit;
+        }
 
-    .services-item {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .services-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-    .services-content-icon {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-grow: 1;
-    }
-    .services-content-icon p {
-        flex-grow: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4; /* Limit to 4 lines */
-        -webkit-box-orient: vertical;
-    }
-    .services-content .btn {
-        margin-top: auto;
-    }
+        .services-item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+        }
+        .services-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            z-index: 5;
+            pointer-events: auto;
+        }
+        .services-content-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            pointer-events: auto;
+            z-index: 5;
+        }
+        .services-content-icon p {
+            flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+        .services-content .btn {
+            margin-top: auto;
+        }
 
-/* Style pour la carte */
-.services-item {
-    pointer-events: auto;
-    transition: all 0.4s ease;
-}
+        .services-item.active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 500px;
+            min-height: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+            filter: none;
+            pointer-events: auto;
+            z-index: 1000;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            background: #ffffff;
+        }
 
-/* Carte agrandie */
-.services-item.active {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.2);
-    width: 500px;
-    min-height: 250px;
-    max-height: 400px;
-    overflow-y: auto;
-    filter: none;
-    pointer-events: auto;
-    z-index: 1000;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-}
+        .services-item.active .services-content-icon {
+            display: none;
+        }
 
-/* Contenu initial (caché quand agrandi) */
-.services-item.active .services-content-icon {
-    display: none;
-}
+        .expanded-inner {
+            display: none;
+            padding: 20px;
+            pointer-events: auto;
+            user-select: text; /* Allow text selection */
+            z-index: 1001;
+        }
 
-/* Contenu agrandi (visible quand agrandi) */
-.expanded-inner {
-    display: none;
-    padding: 20px;
-}
+        .services-item.active .expanded-inner {
+            display: block;
+        }
 
-/* Contenu agrandi visible */
-.services-item.active .expanded-inner {
-    display: block;
-}
+        .close-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+            z-index: 1002;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            line-height: 32px;
+            pointer-events: auto;
+        }
 
-/* Bouton de fermeture */
-.close-btn {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #333;
-    z-index: 1001;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    text-align: center;
-    line-height: 32px;
-}
+        .services-item.active .close-btn {
+            display: block;
+        }
 
-/* Bouton de fermeture visible */
-.services-item.active .close-btn {
-    display: block;
-}
+        body.blurred .services-item:not(.active) {
+            filter: blur(5px);
+            pointer-events: none;
+        }
 
-/* Effet de flou sur l'arrière-plan */
-body.blurred .services-item:not(.active) {
-    filter: blur(5px);
-    pointer-events: none;
-}
+        .lire-plus {
+            pointer-events: auto !important;
+            z-index: 10;
+            position: relative;
+        }
 
-/* Assure que le bouton Lire Plus est cliquable */
-.lire-plus {
-    pointer-events: auto !important;
-    z-index: 10;
-    position: relative;
-}
+        .lire-plus:active {
+            border: 2px solid red !important;
+        }
 
-/* Debug : Bordure rouge sur clic */
-.lire-plus:active {
-    border: 2px solid red !important;
-}
+        /* Ensure download link is clickable and styled */
+        .expanded-inner a {
+            color: #007bff;
+            text-decoration: underline;
+            pointer-events: auto;
+            display: inline-block;
+            margin-top: 10px;
+            z-index: 1001;
+        }
 
-/* Assure que le conteneur parent ne bloque pas les clics */
-.services-content-icon {
-    position: relative;
-    z-index: 5;
-    pointer-events: auto;
-}
+        .expanded-inner a:hover {
+            color: #0056b3;
+        }
 
+        /* Ensure expanded content is fully interactive */
+        .expanded-inner * {
+            pointer-events: auto;
+            user-select: text;
+        }
 
-/*** Services End ***/
+        /*** Services End ***/
 
 
 
